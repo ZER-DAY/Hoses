@@ -1,6 +1,7 @@
-"use client"; // حدد أن هذا مكون عميل
+"use client";
 
 import React from "react";
+import Image from "next/image";
 
 type CardProps = {
   id: string;
@@ -22,36 +23,38 @@ const Card: React.FC<CardProps> = ({
   price,
   imageUrl,
   label,
-  labelColor,
+  labelColor = "bg-[#FFD76F] text-[#1C1C1C]",
   onClick,
 }) => {
   return (
     <div
       onClick={() => onClick(id)}
-      className="relative bg-black rounded-lg shadow-md overflow-hidden cursor-pointer hover:scale-105 transform transition-transform"
+      className=" relative bg-white rounded-lg shadow-md overflow-hidden cursor-pointer hover:scale-105 transform transition-transform w-[340px] h-[380px] border"
     >
-      <img
+      <Image
         src={imageUrl}
         alt={title}
-        className="h-48 w-full object-cover rounded-t-lg"
+        className="object-cover w-full h-[200px]"
+        width={546}
+        height={384}
       />
       <div className="p-4">
         <h2 className="text-lg font-bold text-center mb-2">{title}</h2>
-        <div className="flex items-center justify-between text-sm text-gray-600">
-          <span>📅 {rooms}</span>
+        <div className="text-sm text-gray-600 flex justify-between mb-2">
+          <span>🛏️ {rooms}</span>
           <span>📐 {size}</span>
         </div>
-        <div className="text-blue-600 font-bold text-xl mt-3 text-center">
+        <div className="text-blue-600 font-bold text-xl text-center mb-3">
           💰 {price}
         </div>
+        {label && (
+          <div
+            className={`absolute bottom-2 left-2 px-2 py-1 text-xs font-bold rounded ${labelColor}`}
+          >
+            {label}
+          </div>
+        )}
       </div>
-      {label && (
-        <div
-          className={`absolute top-2 left-2 px-2 py-1 text-sm font-bold text-white rounded ${labelColor}`}
-        >
-          {label}
-        </div>
-      )}
     </div>
   );
 };

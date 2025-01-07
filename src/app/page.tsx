@@ -1,6 +1,6 @@
 "use client";
-import Hero from "@/sections/Hero";
+import Cards from "@/sections/cards";
 
 export default function Home() {
-  return <Hero />;
+  return <Cards />;
 }
